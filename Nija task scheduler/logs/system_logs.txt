@@ -1,0 +1,309 @@
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 11:11:52.090585
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 11:11:56.035951
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 11:12:59.780623
+<class 'TypeError'> 2021-01-13 11:13:14.788621
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 11:14:08.294772
+<class 'TypeError'> 2021-01-13 11:14:12.589105
+login Successfully2021-01-13 11:14:56.171494
+login Successfully 2021-01-13 11:16:44.537248
+login Successfully 2021-01-13 11:17:10.878525
+login Successfully 2021-01-13 11:18:33.515810
+login Successfully 2021-01-13 11:18:42.669136
+login Successfully 2021-01-13 11:18:51.701389
+login Successfully 2021-01-13 11:19:11.129429
+login Successfully 2021-01-13 11:19:29.374812
+login Successfully 2021-01-13 11:19:46.594092
+login Successfully 2021-01-13 11:19:58.200235
+login Successfully 2021-01-13 11:20:08.290493
+login Successfully 2021-01-13 11:27:28.794887
+login Successfully 2021-01-13 11:27:45.726884
+login Successfully 2021-01-13 11:28:36.604580
+login Successfully 2021-01-13 11:30:55.585510
+login Successfully 2021-01-13 12:07:52.640115
+login Successfully 2021-01-13 12:08:30.149436
+login Successfully 2021-01-13 12:09:28.506079
+login Successfully 2021-01-13 12:14:59.349914
+login Successfully 2021-01-13 12:18:10.177073
+login Successfully 2021-01-13 12:24:03.370826
+Registration Done successfully2021-01-13 12:35:51.772946user already exit2021-01-13 12:35:56.129119user already exit 2021-01-13 12:37:34.546179
+user already exit 2021-01-13 12:37:39.040445
+user already exit 2021-01-13 12:37:49.327505
+Registration failed user already exit 2021-01-13 12:38:19.093093
+Registration failed useremail already exit 2021-01-13 12:40:25.005722
+Registration failed useremail already exit 2021-01-13 12:41:00.586884
+Registration failed useremail already exit 2021-01-13 12:41:03.280098
+Registration failed useremail already exit 2021-01-13 12:41:04.617737
+Registration failed useremail already exit 2021-01-13 12:41:05.489792
+Registration failed useremail already exit 2021-01-13 12:41:30.628282
+Registration failed useremail already exit 2021-01-13 12:42:10.584316
+Registration failed useremail already exit 2021-01-13 12:42:32.087224
+Registration failed useremail already exit 2021-01-13 12:44:59.985499
+Registration failed useremail already exit 2021-01-13 12:45:54.248705
+Registration failed useremail already exit 2021-01-13 12:46:33.889410
+Registration failed useremail already exit 2021-01-13 12:47:36.417519
+Registration failed useremail already exit 2021-01-13 12:48:22.613315
+Registration failed useremail already exit 2021-01-13 12:48:26.870703
+Registration failed useremail already exit 2021-01-13 12:48:30.731649
+Registration failed useremail already exit 2021-01-13 13:00:13.902541
+Registration failed useremail already exit 2021-01-13 13:00:24.012786
+Registration failed useremail already exit 2021-01-13 13:00:28.256494
+Registration failed useremail already exit 2021-01-13 13:00:32.257530
+Registration failed useremail already exit 2021-01-13 13:00:36.473098
+Registration failed useremail already exit 2021-01-13 13:05:03.653678
+Registration failed useremail already exit 2021-01-13 13:07:19.273289
+Registration failed useremail already exit 2021-01-13 13:08:41.660264
+Registration failed useremail already exit 2021-01-13 13:08:45.922560
+Registration failed useremail already exit 2021-01-13 13:08:50.900234
+Registration failed useremail already exit 2021-01-13 13:09:23.984455
+Registration failed useremail already exit 2021-01-13 13:09:28.783136
+Registration failed useremail already exit 2021-01-13 13:09:32.880885
+Registration failed useremail already exit 2021-01-13 13:10:05.120379
+Registration failed useremail already exit 2021-01-13 13:11:35.922817
+Registration failed useremail already exit 2021-01-13 13:12:08.385797
+Registration failed useremail already exit 2021-01-13 13:12:59.295830
+Registration failed useremail already exit 2021-01-13 13:13:47.835709
+Registration failed useremail already exit 2021-01-13 13:15:12.993938
+Registration failed useremail already exit 2021-01-13 13:17:31.613836
+Registration failed useremail already exit 2021-01-13 13:17:38.960232
+Registration failed useremail already exit 2021-01-13 13:17:54.724199
+Registration failed useremail already exit 2021-01-13 13:18:18.956120
+Registration failed useremail already exit 2021-01-13 13:24:59.927990
+Registration failed useremail already exit 2021-01-13 13:26:15.522568
+Registration Done successfully 2021-01-13 13:42:15.496588
+Registration Done successfully 2021-01-13 13:42:21.651007
+login Successfully 2021-01-13 13:52:40.314356
+Registration Done successfully 2021-01-13 13:53:14.713600
+Registration failed useremail already exit 2021-01-13 13:53:19.579816
+Registration failed useremail already exit 2021-01-13 13:55:04.595374
+Registration failed useremail already exit 2021-01-13 13:55:38.529521
+Registration failed useremail already exit 2021-01-13 13:56:40.868271
+Registration failed useremail already exit 2021-01-13 14:00:36.903397
+Registration failed useremail already exit 2021-01-13 14:01:08.254332
+Registration failed useremail already exit 2021-01-13 14:01:33.071077
+Registration failed useremail already exit 2021-01-13 14:02:21.280897
+Registration failed useremail already exit 2021-01-13 14:02:25.528902
+Registration failed useremail already exit 2021-01-13 14:03:44.952496
+Registration failed useremail already exit 2021-01-13 14:04:11.889221
+Registration failed useremail already exit 2021-01-13 14:04:25.502390
+Registration failed useremail already exit 2021-01-13 14:04:37.672652
+Registration failed useremail already exit 2021-01-13 14:05:02.919945
+Registration failed useremail already exit 2021-01-13 14:05:56.562234
+Registration failed useremail already exit 2021-01-13 14:06:13.313107
+Registration failed useremail already exit 2021-01-13 14:06:42.432801
+Registration failed useremail already exit 2021-01-13 14:07:20.718672
+Registration failed useremail already exit 2021-01-13 14:13:20.126764
+Registration failed useremail already exit 2021-01-13 14:16:02.592258
+Registration failed useremail already exit 2021-01-13 14:16:49.510765
+Registration failed useremail already exit 2021-01-13 14:17:51.606079
+Registration failed useremail already exit 2021-01-13 14:19:41.730252
+Registration failed useremail already exit 2021-01-13 14:21:02.327180
+Registration failed useremail already exit 2021-01-13 14:23:28.483455
+Registration failed useremail already exit 2021-01-13 14:25:11.631664
+Registration failed useremail already exit 2021-01-13 14:26:05.059977
+Registration failed useremail already exit 2021-01-13 14:28:30.430196
+Registration failed useremail already exit 2021-01-13 14:29:05.581224
+Registration failed useremail already exit 2021-01-13 14:32:43.434556
+Registration failed useremail already exit 2021-01-13 14:34:37.323761
+Registration failed useremail already exit 2021-01-13 14:35:50.511845
+Registration failed useremail already exit 2021-01-13 14:42:20.773033
+Registration failed useremail already exit 2021-01-13 14:42:25.798353
+Registration failed useremail already exit 2021-01-13 14:42:34.356553
+Registration failed useremail already exit 2021-01-13 14:42:37.760371
+Registration failed useremail already exit 2021-01-13 14:43:32.192910
+Registration failed useremail already exit 2021-01-13 14:43:33.787220
+Registration failed useremail already exit 2021-01-13 14:43:34.974371
+Registration failed useremail already exit 2021-01-13 14:43:35.963575
+Registration failed useremail already exit 2021-01-13 14:43:37.005999
+Registration failed useremail already exit 2021-01-13 14:43:38.051377
+Registration failed useremail already exit 2021-01-13 14:43:38.924089
+Registration failed useremail already exit 2021-01-13 14:43:39.062090
+Registration failed useremail already exit 2021-01-13 14:43:39.427575
+Registration failed useremail already exit 2021-01-13 14:43:39.559572
+Registration failed useremail already exit 2021-01-13 14:43:39.819479
+Registration failed useremail already exit 2021-01-13 14:43:39.966481
+Registration failed useremail already exit 2021-01-13 14:43:40.193486
+Registration failed useremail already exit 2021-01-13 14:43:40.306480
+Registration failed useremail already exit 2021-01-13 14:43:40.541482
+Registration failed useremail already exit 2021-01-13 14:43:40.680481
+Registration failed useremail already exit 2021-01-13 14:43:40.909093
+Registration failed useremail already exit 2021-01-13 14:43:42.328906
+Registration failed useremail already exit 2021-01-13 14:43:42.446531
+Registration failed useremail already exit 2021-01-13 14:43:42.630528
+Registration failed useremail already exit 2021-01-13 14:43:42.822534
+Registration failed useremail already exit 2021-01-13 14:43:43.012530
+Registration failed useremail already exit 2021-01-13 14:47:50.127251
+Registration failed useremail already exit 2021-01-13 14:48:19.689783
+Registration failed useremail already exit 2021-01-13 14:49:45.365046
+Registration failed useremail already exit 2021-01-13 14:50:29.203320
+Registration failed useremail already exit 2021-01-13 14:51:55.811186
+Registration failed useremail already exit 2021-01-13 14:52:30.401157
+Registration failed useremail already exit 2021-01-13 14:53:13.299413
+Registration failed useremail already exit 2021-01-13 14:53:46.039274
+Registration failed useremail already exit 2021-01-13 14:55:07.533985
+Registration failed useremail already exit 2021-01-13 15:00:00.755703
+Registration failed useremail already exit 2021-01-13 15:00:06.442283
+Registration failed useremail already exit 2021-01-13 15:01:57.313708
+Registration Done successfully 2021-01-13 15:02:05.155614
+Registration failed useremail already exit 2021-01-13 15:07:57.071398
+Registration Done successfully 2021-01-13 15:08:01.870070
+Registration failed useremail already exit 2021-01-13 15:09:02.354629
+Registration Done successfully 2021-01-13 15:09:05.924410
+Registration failed useremail already exit 2021-01-13 15:11:56.680607
+login Successfully 2021-01-13 15:13:45.703292
+login Successfully 2021-01-13 15:14:13.153125
+login Successfully 2021-01-13 15:16:08.142366
+login Successfully 2021-01-13 16:59:04.980500
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 16:59:25.099321
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 16:59:36.008543
+login Successfully 2021-01-13 17:08:45.844616
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:09:38.627420
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:12:12.039769
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:12:28.179853
+login Successfully 2021-01-13 17:12:57.501910
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:23:23.351699
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:23:52.707207
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:24:01.665721
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:24:07.034130
+login Successfully 2021-01-13 17:24:33.261569
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:26:29.921067
+login Successfully 2021-01-13 17:26:50.099632
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:26:58.355241
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:27:28.767472
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:27:58.743677
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:31:51.618485
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:32:10.291433
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:32:20.259618
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:32:30.220237
+login Successfully 2021-01-13 17:32:31.890529
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:32:43.869773
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:33:02.942449
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:33:38.751096
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:33:47.791060
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:34:29.177453
+login Successfully 2021-01-13 17:34:32.643812
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:35:14.750473
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:40:43.307689
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:42:51.289233
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:44:01.948771
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:53:22.939867
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:53:53.408412
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:54:07.092699
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:58:42.535255
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 17:59:42.876297
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:11:05.960563
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:12:13.284552
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:12:54.475381
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:13:19.322718
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:14:10.578220
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:14:41.863573
+login Successfully 2021-01-13 18:15:12.031367
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:20:33.564526
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:21:08.791362
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:24:45.032991
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:25:28.968883
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:26:42.813333
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:26:53.562414
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:27:18.595605
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:27:58.475942
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:28:16.254902
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-13 18:28:56.007423
+<class 'AttributeError'> 2021-01-14 13:14:31.411298
+<class 'AttributeError'> 2021-01-15 15:43:03.761354
+<class 'TODOS.models.TodoUser.DoesNotExist'> 2021-01-15 15:46:49.346367
+<class 'TODOS.models.TodoUser.DoesNotExist'> 2021-01-15 15:46:58.582251
+<class 'TODOS.models.TodoUser.DoesNotExist'> 2021-01-15 15:47:55.079072
+<class 'TODOS.models.TodoUser.DoesNotExist'> 2021-01-15 15:50:16.955534
+login Successfully 2021-01-15 15:50:33.603210
+login Successfully 2021-01-15 15:52:36.510321
+login Successfully 2021-01-15 15:53:49.195090
+Registration Done successfully 2021-01-15 16:14:13.791953
+login Successfully 2021-01-15 16:14:32.255304
+Registration failed useremail already exit 2021-01-15 16:17:10.890862
+Registration Done successfully 2021-01-15 16:17:20.243476
+login Successfully 2021-01-15 16:17:34.114069
+login Successfully 2021-01-15 16:19:42.804959
+login Successfully 2021-01-15 16:21:12.523320
+Registration failed useremail already exit 2021-01-15 16:32:32.646704
+Registration failed useremail already exit 2021-01-15 16:32:47.472991
+Registration failed useremail already exit 2021-01-15 16:33:39.848563
+Registration failed useremail already exit 2021-01-15 16:35:40.372062
+Registration Done successfully 2021-01-15 16:35:46.804497
+login Successfully 2021-01-15 16:36:04.517732
+login Successfully 2021-01-15 16:36:19.852501
+Registration failed useremail already exit 2021-01-15 16:37:47.494222
+Registration Done successfully 2021-01-15 16:37:51.634585
+Registration failed useremail already exit 2021-01-15 16:40:32.330888
+Registration Done successfully 2021-01-15 16:40:36.982434
+Registration failed useremail already exit 2021-01-15 16:41:45.198474
+Registration Done successfully 2021-01-15 16:42:06.334880
+login Successfully 2021-01-15 16:42:12.081309
+login Successfully 2021-01-15 16:42:31.616164
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-15 16:43:05.349453
+login Successfully 2021-01-15 16:43:53.571037
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-15 20:41:31.617842
+Registration Done successfully 2021-01-15 20:42:05.253448
+login Successfully 2021-01-15 20:42:10.539019
+login Successfully 2021-01-15 20:47:18.645720
+login Successfully 2021-01-15 20:51:02.846402
+login Successfully 2021-01-15 20:51:44.819898
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-15 20:59:17.452364
+Registration Done successfully 2021-01-15 20:59:41.959745
+login Successfully 2021-01-15 20:59:51.899413
+Registration Done successfully 2021-01-15 21:03:29.125615
+login Successfully 2021-01-15 21:03:49.304555
+login Successfully 2021-01-15 21:04:26.590513
+Registration Done successfully 2021-01-15 21:04:50.973154
+Registration failed useremail already exit 2021-01-15 21:06:46.839148
+login Successfully 2021-01-15 21:14:33.756685
+login Successfully 2021-01-16 10:22:45.906783
+login Successfully 2021-01-16 17:34:42.177138
+login Successfully 2021-01-16 17:34:53.826626
+login Successfully 2021-01-16 17:35:30.223008
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-16 17:36:21.656530
+login Successfully 2021-01-16 17:36:28.762398
+Registration Done successfully 2021-01-16 17:56:35.863577
+login Successfully 2021-01-16 17:56:45.176853
+login Successfully 2021-01-17 18:18:22.794537
+login Successfully 2021-01-17 18:43:09.758660
+login Successfully 2021-01-17 18:45:39.225587
+login Successfully 2021-01-17 18:47:46.308658
+<class 'django.db.utils.IntegrityError'> 2021-01-17 18:47:46.480147
+login Successfully 2021-01-17 18:49:37.232642
+<class 'django.db.utils.IntegrityError'> 2021-01-17 18:49:37.257637
+login Successfully 2021-01-17 18:50:16.358881
+<class 'django.db.utils.IntegrityError'> 2021-01-17 18:50:16.384868
+login Successfully 2021-01-17 18:52:49.088800
+<class 'django.db.utils.IntegrityError'> 2021-01-17 18:52:49.113795
+login Successfully 2021-01-17 18:53:40.266791
+login Successfully 2021-01-17 18:54:01.695400
+login Successfully 2021-01-17 18:54:36.145057
+login Successfully 2021-01-17 18:55:07.354221
+login Successfully 2021-01-17 18:55:41.700162
+login Successfully 2021-01-17 18:57:03.363853
+<class 'django.db.utils.IntegrityError'> 2021-01-17 18:57:03.384846
+login Successfully 2021-01-17 19:07:26.801819
+<class 'django.db.utils.IntegrityError'> 2021-01-17 19:07:26.820821
+login Successfully 2021-01-17 19:09:25.575476
+<class 'django.db.utils.IntegrityError'> 2021-01-17 19:09:25.594474
+login Successfully 2021-01-17 19:10:14.576972
+login Successfully 2021-01-17 19:10:51.966850
+<class 'AttributeError'> 2021-01-17 19:10:51.971851
+login Successfully 2021-01-17 19:11:28.695508
+login Successfully 2021-01-17 19:12:13.063656
+login Successfully 2021-01-17 19:12:37.586356
+login Successfully 2021-01-17 19:45:18.413911
+login Successfully 2021-01-17 19:47:34.244705
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-17 22:27:20.647079
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-17 22:27:24.068195
+<class 'django.contrib.auth.models.User.DoesNotExist'> 2021-01-17 22:27:30.903118
+login Successfully 2021-01-17 22:28:03.830316
+login Successfully 2021-01-18 21:57:50.600771
+Registration Done successfully 2021-01-20 00:32:13.663202
+Registration failed useremail already exit 2021-01-20 00:33:03.450739
+Registration Done successfully 2021-01-20 00:33:22.169682
+login Successfully 2021-01-20 00:33:30.130297
+login Successfully 2021-01-20 00:33:39.985541
+login Successfully 2021-01-20 00:38:26.302022
+login Successfully 2021-01-20 00:42:04.497377
+Registration Done successfully 2021-01-22 14:32:51.217389
+login Successfully 2021-01-22 14:33:27.320412
