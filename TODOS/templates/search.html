@@ -1,0 +1,1357 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon" href="{%static 'images/favIcon.png'%}">
+    <link rel="stylesheet" href="{% static 'css/todos.css'%}">
+    <title>All todos</title>
+    <style>
+
+        .todo{
+            background-color: white;
+            width:100%;
+            padding:20px;
+            height:180px;
+            
+            }
+            #myModal{
+                margin-top:10%;
+            }
+            .alltodos{
+                position: relative;
+                top:10px;
+            }
+            #registrationModal{
+                margin-top:8%;
+            }
+            .priporty-list{
+                list-style: none;
+            }
+            .priporty-list li{
+                display:inline;
+            }
+            
+            #updateTOdoModal{
+                margin-top:9%;
+            }
+            .siteIcon{
+                width: 39px;
+            }
+            .userProfile{
+                width: 43px;
+                cursor: pointer;
+                           }
+            #logoutBtn:hover{
+                background-color:rgb(255, 250, 250);
+            }
+            .suggestionspaces{
+                padding: 5px;
+                margin-left: 2%;
+                cursor: pointer;
+            }
+            .settingsmenu{
+              padding:8px;
+              background-color:rgb(43, 150, 177);
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="/"><img src="https://img.icons8.com/plasticine/100/000000/todo-list.png" class="siteIcon"/>Task scheduler</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+              <li class="nav-item">
+                <!-- <button class="btn btn-dark" onclick="showNotification()">Push notification</button>
+                 -->
+                 
+                 
+              </li>
+              {%if is_userAuth %}
+            <li class="nav-item">
+              <a href="/" class="nav-link btn btn-dark text-white" >Today&nbsp;<i class="fa fa-fire" aria-hidden="true"></i></a>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <a href="/tomorrow" class="nav-link btn btn-dark text-white" >Tomorrow&nbsp;<i class="fa fa-step-forward" aria-hidden="true"></i>
+              </a>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <button class="nav-link btn btn-dark text-white"  data-toggle="modal" data-target="#xdayModal">X day&nbsp;<i class="fa fa-calendar-o" aria-hidden="true"></i></i>
+              </button>
+            </li>&nbsp;&nbsp;&nbsp;
+            <li class="nav-item">
+              <a class="nav-link btn btn-dark text-white" href="/alltask" >All tasks&nbsp;<i class="fa fa-list-ul" aria-hidden="true"></i>
+              </a>
+            </li>&nbsp;&nbsp;&nbsp;
+          
+            <li class="nav-item">
+              <a class="nav-link btn btn-dark text-white"  href="/completed_tasks">Completed&nbsp;  
+                <i class="fa fa-check" aria-hidden="true"></i>
+              </a>
+            </li>&nbsp;&nbsp;&nbsp;
+            
+            <li class="nav-item">
+              <button class="nav-link btn btn-dark text-white"  data-toggle="modal" data-target="#myModal">Add todo <i class="fa fa-plus-square" aria-hidden="true"></i></button>
+            </li>&nbsp;&nbsp;&nbsp;
+            
+                 </ul> 
+            {%else%}
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <button type="button" class="btn btn-dark d-none" id="fetchall" onclick="fetchAll()">FetchAll</button>
+            </li>
+        </ul>
+
+            {%endif%}
+         
+            {%if is_userAuth%}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+               <span class="text-white " id="b4op">{{fullname}}</span>     <img src="https://cdn2.iconfinder.com/data/icons/scenarium-vol-4/128/005_avatar_user_account_profile_man_guy_male-128.png" class="userProfile dropdown-toggle" data-toggle="dropdown">
+                   
+                    <div class="dropdown dropdown " style="right: 40px;">
+            
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item " href="#" data-toggle="modal" data-target="#editProfileModal" onclick="loadProfileData()">Edit profile</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#settingModal">Settings</a>
+                        <a class="dropdown-item " id="logoutBtn" href="deleteSession"><button class="btn btn-danger w-100">Logout</button></a>
+                      </div>
+                    
+            </div>    
+                </li> 
+           
+            </ul>
+          
+            {%endif%}
+              
+            
+          
+          <div class="modal" id="myModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title">Add TODO <i class="fa fa-list" aria-hidden="true"></i></i></h4>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="alert">
+                        <strong>Warning!</strong> You can not add empty todo
+                      </div>
+                    <form action="addtodo" method="get" onsubmit="return (validate());">
+                        <input types="text" placeholder="Enter your todo here..." name="todoText" id="todoText" class="form-control"><br>
+                        <input type="date" class="form-control float-left w-50" name="deadline" id="deadline">
+                        <input type="time" class="form-control float-right w-50" name="dotime" id="dotime" >
+                          <br><br>
+                        <select name='todo_priority' class="form-control">
+                            <option>normal</option>
+                            <option>high</option>
+                            <option>none</option>
+                        </select><br/>
+                        <button type="submit" class=" btn btn-success w-100">ADD to list</button>
+                    </form>
+                </div>                   
+                <div class="modal-footer">
+                <span class="text-muted">Task scheduler</span>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+
+          <!----registration modal-->
+          <div class="modal" id="registrationModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title">user registration</h4>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="registrationAlert">
+                        <strong><span id="reponseText"></span></strong>
+                      </div>
+
+                    <form action="addtodo" method="get" onsubmit="return (validate());" id="registrationForm"> 
+                        <input types="text" placeholder="Enter your username here..."  id="username" class="form-control">
+                       
+                        <div id="suggestions">
+                        </div><br/>
+                        <input types="text" placeholder="Enter your full name here..."  id="fullname" class="form-control"><br>
+                        <input types="text" placeholder="Enter your email  here..."  id="remail" class="form-control"><br>
+         
+                        <input type="password" placeholder="Enter your password here..."  id="rspassword" class="form-control"><br>
+                        <input type="password" placeholder="Enter your password here..."  id="rspassword1" class="form-control"><br>
+                        <button type="button" class=" btn btn-info w-100" onclick="doRegistration()">Register</button>
+                    </form>
+                </div>                   
+                
+              </div>
+            </div>
+          </div>
+          <!--end registration modal-->
+          <!----editprofile modal-->
+          <div class="modal" id="editProfileModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title"><span>Haseeb ai</span> | Edit profile info</h4>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="registrationAlert">
+                        <strong><span id="reponseText"></span></strong>
+                      </div>
+
+                    <form action="addtodo" method="get" onsubmit="return (validate());" id="registrationForm"> 
+                        <input types="text" placeholder=""  id="updatename" class="form-control"><br>
+                        <input type="email" placeholder=""  id="upmail" class="form-control"><br>
+                        <button type="button" class=" btn btn-info w-100" onclick="updateProfileChanges()">Update profile</button>
+                    </form>
+                </div>                   
+                
+              </div>
+            </div>
+          </div>
+
+          
+          <!--end edit profile modal-->
+          <!-------XDay-->
+          <div class="modal" id="xdayModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title"><span>Select X date</h4>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="registrationAlert">
+                        <strong><span id="reponseText"></span></strong>
+                      </div>
+                      <script>
+                        function Xvalidate(){
+                          let xdayform=document.getElementById("xdayform");
+                          if(xdayform.elements[0].value.length==0){
+                            const Toast = Swal.mixin({
+                              toast: true,
+                              position: 'top-end',
+                              showConfirmButton: false,
+                              timer: 3000,
+                              timerProgressBar: true,
+                              didOpen: (toast) => {
+                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                              }
+                            })
+                            
+                            Toast.fire({
+                              icon: 'error',
+                              title: "Please select valid date!"
+                            })
+      
+                            return false
+                          }
+                          else{
+                            return true;
+                          }
+                          return false;
+                        }
+                      </script>
+                    <form action="Xday" method="get" onsubmit="return (Xvalidate());" id="xdayform" > 
+                       <input type="date" class="form-control" name="xday" id="xdate">
+                       <br>
+                       <button type="submit" class="btn btn-info w-100"> Load Data</button>
+                    </form>
+                </div>                   
+                
+              </div>
+            </div>
+          </div>
+          
+          <!---------End x day-->
+          
+          <!------App setting modal----->
+          <div class="modal" id="settingModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title"><span>{{fullname}}</span>|App settings</h4>
+                  <button type="button" class="close" data-dismiss="modal" >&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="registrationAlert">
+                        <strong><span id="reponseText"></span></strong>
+                      </div>
+                      <div class="row">
+                          <div class="col-lg-4" style="border-right: 1px solid #bfe0bf;" >
+                            <style>
+                              .settingsmenu{
+                                color:white;
+                                cursor: pointer;
+                                background-color:#28a745 !important;
+                              }
+                              .settingsmenu:active{
+                                border:2px solid;
+                              }
+                              .hide{
+                                display:none;
+                              }
+                              .show{
+                                display:'block';
+                              }
+                            </style>
+                            <script>
+                              function loadAccountInfo(){
+                                let accountDiv=document.getElementById("accountProfile");
+                                let apperanceDiv=document.getElementById("apperance");
+                                let notifications=document.getElementById("notifications");
+                                let changePassword=document.getElementById("changePassword");
+                                let feedBack=document.getElementById("feedback");
+                                apperanceDiv.style.display="none";
+                                notifications.style.display="none";
+                                feedBack.style.display="none";
+                                accountDiv.style.display="block";
+                                changePassword.style.display="none";
+
+                              }
+                              function loadApprance(){
+                                let accountDiv=document.getElementById("accountProfile");
+                                let apperanceDiv=document.getElementById("apperance");
+                                let changePassword=document.getElementById("changePassword");
+                                let notifications=document.getElementById("notifications");
+                                let feedBack=document.getElementById("feedback");
+                                apperanceDiv.style.display="block";
+                                accountDiv.style.display="none";
+                                notifications.style.display="none";
+                                feedBack.style.display="none";
+                                changePassword.style.display="none";
+                                
+
+                              }
+                              function loadNotifications(){
+                                url="/getNote";
+                                var req=new XMLHttpRequest();
+                                req.onreadystatechange=function(){
+                                  if(req.readyState==4 && req.status==200){
+                                    var notificationsObj=JSON.parse(this.responseText);
+                                    document.getElementById("tasknote").checked=notificationsObj.task_notification;
+                                    document.getElementById("completenote").checked=notificationsObj.complete_notification;
+                                    document.getElementById("emailnote").checked=notificationsObj.via_email;
+                                    document.getElementById("sysnote").checked=notificationsObj.sysem_notification;
+                                  }
+
+                                }
+                                req.open("GET",url,true);
+                                req.send();
+                                let accountDiv=document.getElementById("accountProfile");
+                                let apperanceDiv=document.getElementById("apperance");
+                                let notifications=document.getElementById("notifications");
+                                let changePassword=document.getElementById("changePassword");
+                                let feedBack=document.getElementById("feedback");
+                                apperanceDiv.style.display="none";
+                                accountDiv.style.display="none";
+                                notifications.style.display="block";
+                                feedBack.style.display="none";
+                                changePassword.style.display="none";
+
+                              }
+                              function loadFeedBack(){
+                                let accountDiv=document.getElementById("accountProfile");
+                                let changePassword=document.getElementById("changePassword");
+                                let apperanceDiv=document.getElementById("apperance");
+                                let notifications=document.getElementById("notifications");
+                                let feedBack=document.getElementById("feedback");
+                                apperanceDiv.style.display="none";
+                                accountDiv.style.display="none";
+                                notifications.style.display="none";
+                                feedBack.style.display="block";
+                                changePassword.style.display="none";
+                                
+                              }
+                              function loadChangePassword(){
+                                let accountDiv=document.getElementById("accountProfile");
+                                let changePassword=document.getElementById("changePassword");
+                                let apperanceDiv=document.getElementById("apperance");
+                                let notifications=document.getElementById("notifications");
+                                let feedBack=document.getElementById("feedback");
+                                apperanceDiv.style.display="none";
+                                accountDiv.style.display="none";
+                                notifications.style.display="none";
+                                feedBack.style.display="none";
+                                changePassword.style.display="block";
+                                
+
+                              }
+                              
+                              
+                              
+                            </script>
+                            <p id="account" class="settingsmenu" onclick="loadAccountInfo()">Account&Profile</p>
+                              <p id="apprance" class="settingsmenu" onclick="loadApprance()">Apperance</p>
+                              <p><p id="change" class="settingsmenu" onclick="loadChangePassword()">Change password</p>
+                               <p id="account" class="settingsmenu" onclick="loadNotifications()">Notifications</p>
+                              <p id="apprance" class="settingsmenu" onclick="loadFeedBack()">Feedback</p>
+                              
+                              
+                            <!-- <ul class="setting-list" style="border-right: 2px solid rgb(32, 30, 30);">
+                              <li><span>Account&Profile</span></li>
+                              <li><span>Apperance</span></li>
+                              <li><span>Helo</span></li>
+                              
+                            </ul>
+                             -->
+                          </div>
+                          <div class="col-lg-8">
+                            <style>
+                              .iod{
+                                width: 100%;
+                                border:none;
+                                border-bottom: 1px solid green;
+                                outline:none;
+                                background:transparent;
+                              }
+                            </style>
+                           
+                            <div id="changePassword" class="hide"> 
+                              <span class="text-success">Change your password</span><br/><br/><br/>
+                              <form id="changepass">
+                              <input type="password" id="oldPassword" class="iod" placeholder="Enter your old password" autocomplete="false"><br/><br/>
+                              <input type="password" id="newPassword" class="iod" placeholder="Enter your new password"><br/><br/>
+                              <input type="password" id="newPassword1"  class="iod" placeholder="Repeat your  password"><br/><br/>
+                              <button type="button" class="btn btn-success w-100" onclick="changePassword()">Change Password</button>
+                            </form>
+                              <script>
+                                function changePassword(){
+                                  let oldPassword=document.getElementById("oldPassword").value;
+                                  let newPassword=document.getElementById("newPassword").value;
+                                  let newPassword1=document.getElementById("newPassword1").value;
+                                  if(oldPassword.length==0||newPassword.length==0||newPassword1.length==0){
+                                    const Toast = Swal.mixin({
+                                      toast: true,
+                                      position: 'top-end',
+                                      showConfirmButton: false,
+                                      timer: 3000,
+                                      timerProgressBar: true,
+                                      didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                      }
+                                    })
+                                    
+                                    Toast.fire({
+                                      icon: 'error',
+                                      title: "Please fill all fields"
+                                    }) 
+                                  }
+                                  else{
+                                    console.log(newPassword.localeCompare(newPassword1));
+                                    if(newPassword.localeCompare(newPassword1)==-1){
+                                      const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      })
+                                      
+                                      Toast.fire({
+                                        icon: 'error',
+                                        title: "Password doe not match"
+                                      }) 
+                                   
+                                    }
+                                    else{
+                                      var varifyString=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                                      if(!newPassword.match(varifyString)) 
+                                      { 
+                                          const Toast = Swal.mixin({
+                                              toast: true,
+                                              position: 'top-end',
+                                              showConfirmButton: false,
+                                              timer: 3000,
+                                              timerProgressBar: true,
+                                              didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                              }
+                                            })
+                                            
+                                            Toast.fire({
+                                              icon: 'error',
+                                              title: "Weak password like abc*123A"
+                                            })
+
+                                      return false;
+                                    
+                                  }
+                                  else{
+                                    var req=new XMLHttpRequest();
+                                    url="/changepassword?oldpass="+oldPassword+"&"+"newpass="+newPassword;
+                                    req.onreadystatechange=function(){
+                                      if(req.readyState==4&&req.status==200){
+                                        form=document.getElementById("changepass");
+                                        form.reset();
+                                        const Toast = Swal.mixin({
+                                          toast: true,
+                                          position: 'top-end',
+                                          showConfirmButton: false,
+                                          timer: 3000,
+                                          timerProgressBar: true,
+                                          didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                          }
+                                        })
+                                        
+                                        Toast.fire({
+                                          icon: 'success',
+                                          title: this.responseText
+                                        })
+                                      }
+                                    }
+                                    req.open("GET",url,true);
+                                    req.send();
+
+                                  }
+                                    }
+                                  }
+                                }
+                              </script>
+                            </div>
+                            <script>
+                              function getPreview(event){
+                                let image=document.getElementById("imagePreview");
+                                url=URL.createObjectURL(event.target.files[0]);
+                                image.src=url;
+                                console.log(url);
+                              }
+                            </script>
+
+                            <style>
+                              #imagePreview{
+                                width:150px;
+                                height:150px;
+                                border-radius: 100%;
+                                background-size: cover;
+                                display:block;
+                              }
+                              .move-image{
+                                position: relative;
+                                bottom: 22px;
+                                left: 179px;
+                                      }
+                                      #username{
+                                        outline:none;
+                                      }
+                            </style>
+                            <div id="accountProfile">
+                              {% static 'images' as 'images'%}
+                              <span class="text-success">Update profile</span> 
+                             
+                           <center>
+                             <script>
+                               var newusername="";
+                               var oldpass=""
+                               function changeusername(element){
+                                  newusername=element.value;
+                                 
+                               }
+                               function savePassword(){
+                                 console.log(oldpass.localeCompare(newusername));
+                                 
+                                 if(oldpass.localeCompare(newusername)==0){
+                                   return false;
+                                 }
+                                 url="/updateusername?newusername="+newusername;
+                                 
+                                 var req=new XMLHttpRequest();
+                                 req.onreadystatechange=function(){
+                                   if(req.readyState==4 && req.status==200){
+                                    console.log(this.responseText);
+                                    const Toast = Swal.mixin({
+                                      toast: true,
+                                      position: 'top-end',
+                                      showConfirmButton: false,
+                                      timer: 3000,
+                                      timerProgressBar: true,
+                                      didOpen: (toast) => {
+                                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                      }
+                                    })
+                                    
+                                    Toast.fire({
+                                      icon: 'info',
+                                      title: this.responseText
+                                    })
+                                    
+                                
+                                   }
+                                 }
+                                 req.open("GET",url,true);
+                                 req.send();
+                               }
+                               function savepass(e){
+                                oldpass=e.value;
+                               }
+                               
+                             </script>
+                            <img id="imagePreview" src="{{prfileImage}}" accept="image/png"></center>
+                              <label for="upload" style="cursor:pointer"><i class="fa fa-camera move-image" aria-hidden="true"></i></label>
+                              <input type="file" onchange="getPreview(event)" class="hide" name="profilePicture" id="upload">
+                              <div>
+                                <span class="text-success">update username</span>
+                                <input type="text" id="username" onkeyup="changeusername(this)" onblur="savePassword()"  onfocus="savepass(this)" value="{{username}}" style="width: 100%;border:none;border-bottom:1px solid green">
+                                <span id="u"></span>
+                                <br/><br/>
+                                <button type="button" id="deleteaccount" class="btn btn-danger w-100">Delete account</button>
+                              </div>
+                            </div>
+                            <div id="apperance" class="hide">
+                              <div>
+                                <span class="text-success">
+                                  <style>
+                                    .mode-list{
+                                      list-style-type: none;
+                                      padding:10px;
+                                    }
+                                    .mode-list li{
+                                      display:inline;
+                                      padding: 10px;
+                                    }
+                                    
+                                  </style>
+                                  <script>
+                                    function set_mode(event){
+                                      alert(event.value);
+                                    }
+                                  </script>
+                                  <span class="text-success">Select Application mode</span>
+                                  <ul class="mode-list">
+                                    <li><input type="radio" name="mode" value="light" onclick="set_mode(this)">Light</li>
+                                    <li><input type="radio" name="mode" value="dark" onclick="set_mode(this)">Dark</li>
+                                  </ul>
+                                </span>
+                              </div>
+                            </div>
+                            <div id="notifications" class="hide">
+                              <style>
+                                .notifications-settings{
+                                  list-style-type: none;
+                                  padding:10px;
+                                }
+                                .notifications-settings li{
+                                  padding:10px;
+                                }
+                              </style>
+                        
+                              <div>
+                                <script>
+                                  function getPremision(){
+                                      if(!("Notification" in window)){
+                                        swal ( "Oops" ,  "Your browser not support notifications!" ,  "error" )
+                                        
+                                      }
+                                      else if(Notification.permission=="granted"){
+                                          var n=new Notification("Notification setting done successfully");
+                                      }
+                                      else if(Notification.permission!=="denied"){
+                                        Notification.requestPermission().then(function(permission){
+                                          if(permission=="granted"){
+                                            var welcome=new Notification("Notification setting done successfully");
+                                          }
+                                          else if(premission=="denied"){
+                                            swal("Oops","Enable browser notifications","info");
+                                          }
+                                        })
+                                      }
+                                  }
+                                  function save1(event){
+                                    bit=event.checked;
+                                    id=event.id;
+                                    if (bit){
+                                      url="updatetasknot?tasknotification="+"0"+"&"+"task="+id;
+                                    } 
+                                    else{
+                                      url="updatetasknot?tasknotification="+"1"+"&"+"task="+id;
+                                    }
+                                   
+                                    var req=new XMLHttpRequest();
+                                    req.onreadystatechange=function(){
+                                      if(req.readyState==4 && req.status==200){
+                                        console.log(this.responseText);
+                                      }
+                                    }
+                                    req.open("GET",url,"true");
+                                    req.send(); 
+                                  }
+                                  
+                                </script>
+                                <span>Change notifications setting</span>
+                                <ul class="notifications-settings">
+                                  
+                                  <li><input type="checkbox" onchange="save1(this)" id="tasknote"> Task notifications</li>
+                                  <li><input type="checkbox" id="completenote"  onchange="save1(this)">Task completion notifications</li>
+                                  <li><input type="checkbox" id="emailnote"  onchange="save1(this)">Via email</li>
+                                  <li><input type="checkbox"  id="sysnote"  onchange="save1(this)" onclick="getPremision()">System notifications</li>
+                                </ul>
+                                
+                              </div>
+                            </div>
+                            <div id="feedback" class="hide">
+                              <style>
+                                #feedabcktopic{
+                                  width:100%;
+                                  border:none;
+                                  border-bottom:1px solid  green;
+                                  outline:none;
+                                  margin-top:5%;
+                                }
+                                #feedbackmessage{
+                                  width:100%;
+                                margin-top:4%;
+                                height:200px;
+                                  outline:none;
+                                  resize:none;
+                                }
+                              </style>
+                              <div>
+                                <script>
+                                  function saveFeedBack(){
+                                    let topic=document.getElementById("feedabcktopic").value;
+                                    let feedbackmeesage=document.getElementById("feedbackmessage").value;
+                                    if(topic.length==0 || feedbackmeesage.length==0){
+                                      const Toast = Swal.mixin({
+                                        toast: true,
+                                        position: 'top-end',
+                                        showConfirmButton: false,
+                                        timer: 3000,
+                                        timerProgressBar: true,
+                                        didOpen: (toast) => {
+                                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                        }
+                                      })
+                                      
+                                      Toast.fire({
+                                        icon: 'error',
+                                        title: "Please fill all fields"
+                                      })
+
+                                     return false;
+                                    }
+                                    url="savefeedback?topic="+topic+"&"+"message="+feedbackmeesage;
+                                    var req=new XMLHttpRequest();
+                                    req.onreadystatechange=function(){
+                                      if(req.readyState==4 && req.status==200){
+                                        console.log(this.responseText);
+                                        document.getElementById("feedbackform").reset();
+                                        const Toast = Swal.mixin({
+                                          toast: true,
+                                          position: 'top-end',
+                                          showConfirmButton: false,
+                                          timer: 3000,
+                                          timerProgressBar: true,
+                                          didOpen: (toast) => {
+                                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                          }
+                                        })
+                                        
+                                        Toast.fire({
+                                          icon: 'info',
+                                          title: this.responseText
+                                        })
+                                        
+                                      }
+                                    }
+                                    req.open("GET",url,"ture");
+                                    req.send();  
+                                  }
+                                </script>
+                                <span class="text-success">Provide your feedback</span>
+                                <br>
+                                <form id="feedbackform">
+                                <input type="text" id="feedabcktopic" placeholder="Enter your topic">
+                                <textarea col="10" id="feedbackmessage" placeholder="Enter your feedback here"></textarea>
+                                <button type="button" class="btn btn-success w-100" onclick="saveFeedBack()">Send feedback</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+
+                    
+                </div>                   
+                
+              </div>
+            </div>
+          </div>
+          
+          <!------End app setting modela-->
+           <!----Data Update modal-->
+           <div class="modal" id="updateTOdoModal">
+            <div class="modal-dialog">
+              <div class="modal-content">                  
+                <div class="modal-header">
+                  <h4 class="modal-title">Update TODO</h4>
+                  <button type="button" class="close" data-dismiss="modal" onclick="reloadPage()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info alert-dismissible fade show d-none" id="aalert">
+                        <strong><span id="updateResponse"></span></strong>
+                      </div>
+                    <form action="addtodo" method="get" onsubmit="return (validate());">
+                       <input types="text" placeholder="" value=""  id="updatedTodoText" class="form-control"><br>
+                       <input type="hidden" value="" id="hidetodoId"/>
+                       <div class="alert alert-primary">Update priporty</div>
+                       <div class="bs-example">
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-primary ">
+                                <input type="radio" name="priporty" id="normal" autocomplete="off" checked value="normal"> Normal
+                            </label>&nbsp;&nbsp;
+                            <label class="btn btn-danger ">
+                                <input type="radio" name="priporty" id="high" autocomplete="off"  name="high"> High
+                            </label>&nbsp;&nbsp;
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="priporty" id="none" autocomplete="off"  name="none"> None
+                            </label>
+                        </div><br/><br/>
+                    </div>
+                        <button type="button" class=" btn btn-success w-100" onclick="saveChanges()"><i class="fa fa-floppy-o" aria-hidden="true"></i>&nbsp;Save changes</button>
+                    </form>
+                </div>                   
+                <div class="modal-footer">
+                <span class="text-muted">Task scheduler</span>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          
+          <!--Data Update  modal-->
+        </div>  
+      </nav>
+      <br>
+      {% if is_userAuth %}
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12">
+            <center>
+             <span class="text-white badge badge-primary" style="padding:10px">{{todayDate}}</span>
+            
+            </center>
+            
+          </div>  
+          <div class="col-lg-4 col-sm-12 col-md-6">
+            
+                <form action="search" method="get">
+                    <input type="search" name="keyword" placeholder="Type something for search" class="form-control">
+                    <button type="submit" class="bt btn-success" style="position: relative;top:2px">Search</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+        
+            <div class="container alltodos">
+            <div class="row">
+                {% for todo in todos %}
+                {% if todo.todo_status == "uncompleted" %}
+                <div class="col-lg-6 col-sm-12">
+                <form action="action" method="get" enctype="multipart/form-data"  name="deleteForm" >
+                <div class="todo">
+                    <span class="text-muted">Task ID</span><span class='badge badge-primary'>{{todo.todo_id}}</span>
+                    {% if todo.todo_priporty == "normal" %}
+                    <span style="float:right " ><span class="badge badge-primary" style="padding:8px">{{todo.todo_priporty}}</span></span>
+                   {%elif todo.todo_priporty == "high" %}
+                   <span style="float:right " ><span class="badge badge-danger" style="padding:8px">{{todo.todo_priporty}}</span></span>
+                   {%else%}
+                   <span style="float:right " ><span class="badge badge-secondary" style="padding:8px">{{todo.todo_priporty}}</span></span>
+                   {%endif%}
+                   
+                    <br/><br/>
+                   
+                    <p>{{todo.todo_text}}</p>
+                    <span class="text-muted">Deadline <mark>{{todo.todo_add_date}}</mark></span>
+                    {%if todo.todo_updated_time != '0.0.0' %}
+                    <span style="float:right">Update date <mark>{{todo.todo_updated_time}}</mark></span>
+                    {%endif%}<br/><p></p>
+                    <button type="submit" id="delete" name='mode' value='delete' onclick="confirmDelete()"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp;Delete</button>
+                    <button type="button" id="edit" name='mode' value="{{todo.todo_id}}" data-toggle="modal" data-target="#updateTOdoModal" onclick="loadData(this)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i>&nbsp;Edit</button>
+                   <span id="comle">
+                    
+                    <span id="comleBox">
+                    <input type="checkbox" value="{{todo.todo_id}}" class=""  id="compelete" onchange="complete(this)">Mark as completed
+                  </span>
+                  
+                  <span id="mes" class="badge badge-success text-white d-none p-1 ">
+                    COMPLETED
+                  </span>
+                  </span>
+
+                    <style>
+                      .completed{
+                        border:none;
+                        outline:none;
+                        background-color: green;
+                        color:white;
+                      }
+                    </style>
+                    
+                    
+                    <input type="hidden" name="todoId" value="{{todo.todo_id}}">
+                </div>
+            </form><br/>
+            <script>
+              function complete(event){
+                let ee=document.getElementById("comleBox");
+                ee.style.display="none";
+                
+              document.getElementById("mes").classList.remove("d-none");
+              url="/setCompleted?id="+event.value;
+              var req=new XMLHttpRequest();
+              req.onreadystatechange=function(){
+                if(req.readyState==4 && req.status==200){
+                   location.reload();
+                }
+              }
+              req.open("GET",url,true);
+              req.send();
+              }
+            </script>
+
+        </div>
+        {%endif%}
+                  
+            {%endfor%}
+            </div>
+        </div>
+        {%else%}
+        <div class="container">
+            
+        </div> 
+        <div class="container ">
+            <div class="row">
+            <div class="col-lg-4 m-auto bg-white login-box">
+                <!-- 
+                 -->
+                 <center><img src="https://cdn2.iconfinder.com/data/icons/scenarium-vol-4/128/005_avatar_user_account_profile_man_guy_male-128.png" class="userLoginIcon m-auto"></center>
+                  {%if messages %}
+                {%for message in messages%}
+                <center><b><span class="text-danger fd-bold">{{message}}</span></b></center><br/>
+                
+                {%endfor%}
+                {%endif%}
+             
+             
+                 <form action="login" method="post" onsubmit="return(logValidate())" >
+                     {%csrf_token%}
+                    <input types="email" placeholder="Enter your email here..."  id="lguseremail" name="lguseremail" class="form-control"><br>
+                    <input type="password" placeholder="Enter your password here..."  id="lgpassword"  name="lgpassword" class="form-control"><br>
+                    <button type="submit" class=" btn btn-success w-100 " >Login</button>
+                    <button type="button" class=" btn btn-info w-100 "  style="margin-top: 8px;" data-toggle="modal" data-target="#registrationModal">Sign up</button>
+                    
+                </form>
+            </div>
+        </div>
+        </div>
+        
+        {%endif%}
+    </div>
+        
+</body>
+</html>
+<script src="{%static 'js/todos.js'%}"></script>
+<script src="{%static 'push.js/bin/push.min.js' %}"></script>
+<script src="{% static 'sweetalert2/dist/sweetalert2.all.min.js' %}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
+
+<script>
+    function showNotification(){
+       Push.create("hi",{
+        body:'this is form haseeb',
+        icon:'https://images.freecreatives.com/wp-content/uploads/2016/02/Amazing-Road-Background-For-Free1.jpg',
+        timeout:40000,
+        onClick:function(){
+            window.location="https://images.freecreatives.com/wp-content/uploads/2016/02/Amazing-Road-Background-For-Free1.jpg";
+            this.close();
+        }
+
+
+       });
+    }
+
+    function validate(){
+        let val=document.getElementById('todoText').value.trim();
+        let deadline=document.getElementById("deadline").value.trim();
+        let doTime=document.getElementById("dotime").value.trim();
+        
+        if(val.length==0 || deadline.length==0 || doTime.length==0){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'error',
+            title: "Please fill all the fields"
+          })
+          
+
+            return false;
+        }
+        else{       
+        return true;
+        }
+    }
+    function addClass(){
+        document.getElementById('alert').classList.add("d-none");
+        alert("hi");
+    }
+    function logValidate(){
+        useremail=document.getElementById("lguseremail").value;
+        password=document.getElementById("lgpassword").value;
+        if(useremail=="" || password==""){
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'error',
+                title: 'Please fill all fields'
+              })
+              
+              return false;
+        }
+      else{
+          return true;  
+      }
+        
+
+    } 
+    function doRegistration(){
+           let userEmail=document.getElementById("username").value.trim();
+           let email=document.getElementById("remail").value.trim();
+           let fullName=document.getElementById("fullname").value.trim();
+           let password=document.getElementById("rspassword").value.trim();
+           let password1=document.getElementById("rspassword1").value.trim(); 
+           console.log(password.localeCompare(password1));
+           console.log(password1);          
+           if(email.length==0||userEmail.length==0 || fullName.length==0 || password.length==0 || password1.length==0 )
+           {   
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'error',
+                title: "Please provide required information!"
+              }) 
+              
+                return false;           
+            }
+            if(password.localeCompare(password1)!=0){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'error',
+                    title: "Password does not match !"
+                  })
+
+
+                  return false;
+
+               }
+               var varifyString=  /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+                if(!password.match(varifyString)) 
+                { 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                          toast.addEventListener('mouseenter', Swal.stopTimer)
+                          toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                      })
+                      
+                      Toast.fire({
+                        icon: 'error',
+                        title: "Weak password like abc*123A"
+                      })
+
+    
+                return false;
+              
+            }
+            var maivarification= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(!email.match(maivarification)){
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'error',
+                title: "Email is not well formated"
+              })
+              return false;
+            }
+
+            var vrifyUsername=/^[a-z0-9]+$/i;
+            if(!userEmail.match(vrifyUsername)){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'error',
+                    title: "Username must be alphanumeric"
+                  })
+                return false;
+            }
+               
+            
+        url='/registration?email='+email+"&"+"username="+userEmail+"&"+"fullname="+fullName+"&"+"rspassword="+password;
+        var req=new XMLHttpRequest();
+        req.onreadystatechange=function(){
+            if(this.readyState==4 && this.status==200){
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'success',
+                    title: this.response
+                  }) 
+                  document.getElementById("registrationForm").reset();
+            }
+            else{
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                      toast.addEventListener('mouseenter', Swal.stopTimer)
+                      toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                  })
+                  
+                  Toast.fire({
+                    icon: 'error',
+                    title: "username already exit"
+                  }) 
+
+                  var suggestions=eval(this.responseText)
+                  let targetDOM=document.getElementById("suggestions");
+                  function removeAllChildNodes(parent) {
+                    while (parent.firstChild) {
+                        parent.removeChild(parent.firstChild);
+                    }
+                }
+                const container = document.querySelector('#suggestions');
+                removeAllChildNodes(container);
+                  for(let i=0;i<suggestions.length;i++){
+                  let suggestion=document.createElement("span");
+                  suggestion.classList.add("badge");
+                  suggestion.classList.add("badge-info");
+                  suggestion.classList.add("suggestionspaces");
+                  suggestion.addEventListener("click",function(){
+                    document.getElementById("username").value=(this.innerHTML);
+                    this.classList.remove("badge-info");
+                    this.classList.add("badge-secondary");  
+                  })
+                  suggestion.innerHTML=suggestions[i];
+                  targetDOM.appendChild(suggestion);
+                  }
+            }
+        }
+        req.open("GET",url,true);
+        req.send();
+    }
+       function loadProfileData(){       
+    var req=new XMLHttpRequest();
+    req.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200){
+        var data=JSON.parse(this.responseText);
+        document.getElementById("updatename").value=data.name;
+        document.getElementById("upmail").value=data.email;
+
+        }
+    }
+    req.open("GET","getprfiledata",true);
+    req.send();
+
+       } 
+       function updateProfileChanges(){
+        let name=document.getElementById("updatename").value.trim();
+        let email=document.getElementById("upmail").value.trim();
+        if(name.length==0||email.length==0){
+          const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer)
+              toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+          })
+          
+          Toast.fire({
+            icon: 'error',
+            title: "fill all the fields"
+          }) 
+          
+
+        }
+        else{
+          var maivarification= /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            if(!email.match(maivarification)){
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'error',
+                title: "Email is not well formated"
+              })
+              return false;
+            }
+          url="/updateinfo?name="+name+"&"+"email="+email;
+          var req=new XMLHttpRequest();
+          req.onreadystatechange=function(){
+            if(req.readyState==4 && req.status==200){
+              let response=JSON.parse(this.response);
+              document.getElementById("b4op").innerHTML=response.name
+              console.log(response);
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer)
+                  toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+              })
+              
+              Toast.fire({
+                icon: 'success',
+                title: response.message
+              })
+              
+            }              
+          }
+          req.open('GET',url,true);
+            req.send();
+            
+          
+        }
+       }
+      
+      
+</script>
+<style>
+    .login-box{
+        padding:30px;
+        position:relative;
+        top:120px;
+    }
+    .userLoginIcon{
+        width:120px;
+        position:relative;
+        bottom:23px;
+        
+    }
+    #xdayModal{
+      margin-top: 14%;
+  
+  }
+  
+  
+  </style>
