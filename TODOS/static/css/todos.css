@@ -1,0 +1,75 @@
+body{
+    background-color: rgb(236, 236, 236);
+}
+#brandName{
+    font-size:1.8rem;
+    background-color: rgb(0, 247, 255);
+    font-weight: bold;
+    padding:20px;
+}
+.todo-input-box{
+    position:relative;
+    top:120px;
+}
+.todo-input-box input{
+    padding:0.55rem;
+    border:none;
+    outline:none;
+    width:300px;
+}
+select{
+    padding:0.55rem;
+    border:none;
+    outline:none;
+}
+
+.todo-input-box input:focus{
+    outline:1px solid rgb(14, 98, 104);   
+}
+.select.focus{
+    outline:1px solid rgb(14, 98, 104); 
+}
+
+.todo-input-box button{
+    padding:0.55rem;
+    background-color: black;
+    color:white;
+}
+.todo-input-box button:active{
+    outline:2px solid black;
+}
+.all-todos-box{
+    position: relative;
+    top:200px;
+}
+
+.todo span{
+    float:left;
+}
+.todo button{
+    float:right;
+        
+}
+
+button{
+    cursor: pointer;
+    border:none;
+    outline:none;
+}
+.todo #edit{
+    background-color: green;
+    color:white;
+    margin-right: 2%;
+    
+}
+.todo #edit:active{
+    outline:1px solid rgb(96, 250, 96);
+}
+.todo #delete{
+    background-color: rgb(180, 39, 39);
+    color:white;
+    
+}
+.todo #delete:active{
+    outline:1px solid rgb(180,39,39);
+}
